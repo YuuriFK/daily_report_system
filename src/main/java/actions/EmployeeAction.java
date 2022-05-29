@@ -5,13 +5,13 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 
+import actions.views.EmployeeView;
 import constants.AttributeConst;
 import constants.ForwardConst;
 import constants.JpaConst;
 import constants.MessageConst;
 import constants.PropertyConst;
 import services.EmployeeService;
-import views.EmployeeView;
 
 public class EmployeeAction extends ActionBase {
     private EmployeeService service;

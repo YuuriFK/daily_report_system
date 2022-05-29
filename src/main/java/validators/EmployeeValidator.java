@@ -3,9 +3,9 @@ package validators;
 import java.util.ArrayList;
 import java.util.List;
 
+import actions.views.EmployeeView;
 import constants.MessageConst;
 import services.EmployeeService;
-import views.EmployeeView;
 
 public class EmployeeValidator {
     public static List<String> validate (EmployeeService service, EmployeeView ev, Boolean codeDuplicateCheckFlag, Boolean passwordCheckFlag) {

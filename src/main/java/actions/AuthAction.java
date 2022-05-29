@@ -4,12 +4,12 @@ import java.io.IOException;
 
 import javax.servlet.ServletException;
 
+import actions.views.EmployeeView;
 import constants.AttributeConst;
 import constants.ForwardConst;
 import constants.MessageConst;
 import constants.PropertyConst;
 import services.EmployeeService;
-import views.EmployeeView;
 
 public class AuthAction extends ActionBase {
 
@@ -55,5 +55,12 @@ public class AuthAction extends ActionBase {
 
             forward(ForwardConst.FW_LOGIN);
         }
+    }
+
+    //ログアウト
+    public void logout() throws ServletException, IOException {
+        removeSessionScope(AttributeConst.LOGIN_EMP);
+        putSessionScope(AttributeConst.FLUSH, MessageConst.I_LOGOUT.getMessage());
+        redirect(ForwardConst.ACT_AUTH, ForwardConst.CMD_SHOW_LOGIN);
     }
 }
