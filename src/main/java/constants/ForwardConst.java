@@ -2,7 +2,7 @@ package constants;
 
 //  画面遷移に関わる値を定義する
 
-public enum ForwardConst {
+public class ForwardConst {
     //action
     ACT("action"),
     ACT_TOP("Top"),
@@ -17,7 +17,7 @@ public enum ForwardConst {
     CMD_SHOW("show"),
     CMD_SHOW_LOGIN("showLogin"),
     CMD_LOGIN("login"),
-    CMD_LOGOUT("logout"),
+    CMD_NEW("logout"),
     CMD_NEW("entryNew"),
     CMD_CREATE("create"),
     CMD_EDIT("edit"),
@@ -25,7 +25,7 @@ public enum ForwardConst {
     CMD_DESTROY("destroy"),
 
     //jsp
-    FW_ERR_UNKNOWN("error/unknown"),
+    FW_ERR_UNKNOWN("err/unknown"),
     FW_TOP_INDEX("topPage/index"),
     FW_LOGIN("login/login"),
     FW_EMP_INDEX("employees/index"),
@@ -35,7 +35,7 @@ public enum ForwardConst {
     FW_REP_INDEX("reports/index"),
     FW_REP_SHOW("reports/show"),
     FW_REP_NEW("reports/new"),
-    FW_REP_EDIT("reports/edit");
+    FW_REP_EDIT("reports/edit";)
 
     private final String text;
 

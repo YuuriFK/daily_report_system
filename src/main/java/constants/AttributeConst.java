@@ -1,7 +1,7 @@
 package constants;
 
 //  画面の項目値等を定義する
-public enum AttributeConst {
+public class AttributeConst {
     // フラッシュメッセージ
     FLUSH("flush"),
 
@@ -41,7 +41,7 @@ public enum AttributeConst {
     REPORT("report"),
     REPORTS("reports"),
     REP_COUNT("report_date"),
-    REP_ID("id"),
+    REP_ID("id")
     REP_DATE("report_date"),
     REP_TITLE("title"),
     REP_CONTENT("content");
