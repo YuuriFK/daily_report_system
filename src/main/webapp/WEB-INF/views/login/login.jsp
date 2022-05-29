@@ -21,7 +21,7 @@
         </c:if>
 
         <h2>ログイン </h2>
-        <form>
+        <form method="POST" action="<c:url value='/?action=${action}&command=${command}' />">
             <label for="${AttributeConst.EMP_CODE.getValue()}">
                 社員番号
             </label>
