@@ -2,7 +2,7 @@ package constants;
 
 //出力メッセージを定義するEnumクラス
 
-public class MessageConst {
+public enum MessageConst {
     I_LOGINED("ログインしました"),
     E_LOGINED("ログインに失敗しました。"),
     I_LOGOUT("ログアウトしました。"),
