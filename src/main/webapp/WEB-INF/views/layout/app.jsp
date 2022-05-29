@@ -46,6 +46,7 @@
             </c:if>
         </div>
         <div id="content">${param.content}</div>
-        </div>
+    <div id="footer">by Yuuri K.</div>
+    </div>
 </body>
 </html>
