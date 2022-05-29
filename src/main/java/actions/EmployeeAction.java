@@ -28,6 +28,7 @@ public class EmployeeAction extends ActionBase {
        List<EmployeeView> employees = service.getPerPage(page);
        long employeeCount = service.countAll();
 
+       if(checkAdmin()) {
        putRequestScope(AttributeConst.EMPLOYEES, employees);
        putRequestScope(AttributeConst.EMP_COUNT, employeeCount);
        putRequestScope(AttributeConst.PAGE, page);
@@ -39,19 +40,22 @@ public class EmployeeAction extends ActionBase {
            removeSessionScope(AttributeConst.FLUSH);
        }
        forward(ForwardConst.FW_EMP_INDEX);
+       }
     }
 
     //new
     public void entryNew() throws ServletException, IOException {
+        if(checkAdmin()) {
         putRequestScope(AttributeConst.TOKEN, getTokenId());
         putRequestScope(AttributeConst.EMPLOYEE, new EmployeeView());
 
         forward(ForwardConst.FW_EMP_NEW);
+        }
     }
 
     //create
     public void create() throws ServletException, IOException {
-        if (checkToken()) {
+        if (checkAdmin() && checkToken()) {
             EmployeeView ev = new EmployeeView(
                     null,
                     getRequestParam(AttributeConst.EMP_CODE),
@@ -80,6 +84,7 @@ public class EmployeeAction extends ActionBase {
 
     //show
     public void show() throws ServletException, IOException {
+        if(checkAdmin()) {
         EmployeeView ev = service.findOne(toNumber(getRequestParam(AttributeConst.EMP_ID)));
         if (ev == null || ev.getDeleteFlag() == AttributeConst.DEL_FLAG_TRUE.getIntegerValue()) {
             forward(ForwardConst.FW_ERR_UNKNOWN);
@@ -87,10 +92,12 @@ public class EmployeeAction extends ActionBase {
         }
         putRequestScope(AttributeConst.EMPLOYEE, ev);
         forward(ForwardConst.FW_EMP_SHOW);
+        }
     }
 
     //edit
     public void edit() throws ServletException, IOException {
+        if(checkAdmin()) {
         EmployeeView ev = service.findOne(toNumber(getRequestParam(AttributeConst.EMP_ID)));
 
         if (ev == null || ev.getDeleteFlag() == AttributeConst.DEL_FLAG_TRUE.getIntegerValue()) {
@@ -102,10 +109,12 @@ public class EmployeeAction extends ActionBase {
         putRequestScope(AttributeConst.EMPLOYEE, ev);
 
         forward(ForwardConst.FW_EMP_EDIT);
+        }
     }
 
     //update
     public void update() throws ServletException, IOException{
+        if(checkAdmin()) {
         if(checkToken()) {
             EmployeeView ev = new EmployeeView(
                     toNumber(getRequestParam(AttributeConst.EMP_ID)),
@@ -131,14 +140,25 @@ public class EmployeeAction extends ActionBase {
                 redirect(ForwardConst.ACT_EMP, ForwardConst.CMD_INDEX);
             }
         }
+        }
     }
 
     //destroy
     public void destroy() throws ServletException, IOException{
-        if(checkToken()) {
+        if (checkAdmin() && checkToken())
             service.destroy(toNumber(getRequestParam(AttributeConst.EMP_ID)));
             putSessionScope(AttributeConst.FLUSH, MessageConst.I_DELETED.getMessage());
             redirect(ForwardConst.ACT_EMP, ForwardConst.CMD_INDEX);
+        }
+
+    //管理者でなければエラー画面
+    private boolean checkAdmin() throws ServletException, IOException {
+        EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
+        if (ev.getAdminFlag() != AttributeConst.ROLE_ADMIN.getIntegerValue()) {
+            forward(ForwardConst.FW_ERR_UNKNOWN);
+            return false;
+        } else {
+            return true;
         }
     }
 }
