@@ -12,7 +12,7 @@ import validators.EmployeeValidator;
 import views.EmployeeConverter;
 import views.EmployeeView;
 
-public class EmployeeService {
+public class EmployeeService extends ServiceBase {
     //指定されたページ数の一覧画面に表示するデータを取得
     public List<EmployeeView> getPerPage(int page) {
         List<Employee> employees = em.createNamedQuery(JpaConst.Q_EMP_GET_ALL, Employee.class)
@@ -33,7 +33,7 @@ public class EmployeeService {
 
 
     //社員番号、パスワードを条件にデータを取得
-    public EmployeeView fineOne(String code, String plainPass, String pepper) {
+    public EmployeeView findOne(String code, String plainPass, String pepper) {
         Employee e = null;
         try {
             //パスワードのハッシュ化

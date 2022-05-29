@@ -10,7 +10,7 @@ public interface JpaConst {
     String PERSISTENCE_UNIT_NAME = "daily_report_system";
 
     //データ取得件数の最大値
-    int ROW_PER_PARE = 15;
+    int ROW_PER_PAGE = 15;
 
     //従業員テーブル
     String TABLE_EMP = "employees";

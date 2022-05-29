@@ -6,7 +6,7 @@ import utils.DBUtil;
 
 public class ServiceBase {
     protected EntityManager em = DBUtil.createEntityManager();
-    public void dlose() {
+    public void close() {
         if (em.isOpen()) {
             em.close();
         }
