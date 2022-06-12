@@ -10,7 +10,7 @@
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
         <h2>日報 詳細ページ</h2>
-        <input type="submit" value="リアクション！"><br>
+            <button type="submit">リアクション</button>
         <table>
             <tbody>
                 <tr>
