@@ -41,6 +41,12 @@ public interface JpaConst {
     String REP_COL_CREATED_AT = "created_at";
     String REP_COL_UPDATED_AT = "updated_at";
 
+    //リアクションテーブル
+    String REACT_COL_HEART="reaction_type_heart";
+    String REACT_COL_SURPRISE="reaction_type_surprise";
+    String REACT_COL_GOOD="reaction_type_good";
+
+
     //Entity名
     String ENTITY_EMP = "employee";
     String ENTITY_REP = "report";
