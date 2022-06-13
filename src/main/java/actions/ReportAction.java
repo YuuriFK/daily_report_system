@@ -119,6 +119,11 @@ public class ReportAction extends ActionBase{
         }
     }
 
+    //リアクション
+    public void good() throws ServletException, IOException {
+        System.out.println("リアクション成功");
+    }
+
     //edit
     public void edit() throws ServletException, IOException {
         ReportView rv = service.findOne(toNumber(getRequestParam(AttributeConst.REP_ID)));

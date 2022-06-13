@@ -6,11 +6,15 @@
 <c:set var="actRep" value="${ForwardConst.ACT_REP.getValue()}" />
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
 <c:set var="commEdt" value="${ForwardConst.CMD_EDIT.getValue()}" />
+<c:set var="action" value="${ForwardConst.ACT_REP.getValue()}" />
+<c:set var="commCrt" value="${ForwardConst.CMD_GOOD.getValue()}" />
 
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
         <h2>日報 詳細ページ</h2>
-            <button type="submit">リアクション</button>
+                <form method="POST" action="<c:url value='?action=${action}&command=${commCrt}' />">
+                    <button type="submit">リアクション</button>
+                </form>
         <table>
             <tbody>
                 <tr>
