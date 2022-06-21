@@ -23,6 +23,7 @@ public enum ForwardConst {
     CMD_EDIT("edit"),
     CMD_UPDATE("update"),
     CMD_DESTROY("destroy"),
+  //***以下、機能追加のための追加
     CMD_GOOD("good"),
 
     //jsp

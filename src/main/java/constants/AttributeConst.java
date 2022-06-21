@@ -45,9 +45,10 @@ public enum AttributeConst {
     REP_DATE("report_date"),
     REP_TITLE("title"),
     REP_CONTENT("content"),
-    REP_REACTION_HEART("heart"),
-    REP_REACTION_surprise("surprise"),
-    REP_REACTION_GOOD("good");
+    //***以下、機能追加のための追加
+    //REP_REACTION_HEART("heart"),
+    //REP_REACTION_surprise("surprise"),
+    REP_REACTION("reaction");
 
     private final String text;
     private final Integer i;

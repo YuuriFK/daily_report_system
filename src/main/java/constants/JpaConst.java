@@ -24,7 +24,6 @@ public interface JpaConst {
     String EMP_COL_UPDATED_AT = "updated_at";
     String EMP_COL_DELETE_FLAG = "delete_flag";
 
-
     int ROLE_ADMIN = 1;
     int ROLE_GENERAL = 0;
     int EMP_DEL_TRUE = 1;
@@ -41,15 +40,15 @@ public interface JpaConst {
     String REP_COL_CREATED_AT = "created_at";
     String REP_COL_UPDATED_AT = "updated_at";
 
-    //リアクションテーブル
-    String REACT_COL_HEART="reaction_type_heart";
-    String REACT_COL_SURPRISE="reaction_type_surprise";
-    String REACT_COL_GOOD="reaction_type_good";
-
+    //***以下、機能追加のための追加リアクションテーブル
+    String REP_TABLE_REACTION = "reactions";
+    String REP_COL_REACT_ID = "reaction_id";
+    String REP_COL_REACTION = "reaction_type";
 
     //Entity名
     String ENTITY_EMP = "employee";
     String ENTITY_REP = "report";
+    String ENTITY_REACT = "reaction";
 
     //JPQL内パラメータ
     String JPQL_PARM_CODE = "code";
@@ -89,4 +88,9 @@ public interface JpaConst {
     //指定した従業員が作成した日報の件数を取得する
     String Q_REP_COUNT_ALL_MINE = ENTITY_REP + ".countAllMine";
     String Q_REP_COUNT_ALL_MINE_DEF = "SELECT COUNT(r) FROM Report AS r WHERE r.employee = :" + JPQL_PARM_EMPLOYEE;
+
+    //***以下、機能追加: すべてのリアクションの件数を取得する
+    //String Q_REACT_COUNT = ENTITY_REACT + ".count";
+    //String Q_REACT_COUNT_DEF = "SELECT COUNT(reactions) FROM Report AS reactions";
+
 }

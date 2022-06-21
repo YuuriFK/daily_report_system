@@ -43,12 +43,12 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+
 public class Report {
     @Id
     @Column(name = JpaConst.REP_COL_ID)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
 
     @ManyToOne
     @JoinColumn(name = JpaConst.REP_COL_EMP, nullable = false)
@@ -66,11 +66,11 @@ public class Report {
     @Column(name = JpaConst.REP_COL_CONTENT, nullable = false)
     private String content;
 
-
     @Column(name = JpaConst.REP_COL_CREATED_AT, nullable = false)
     private LocalDateTime createdAt;
 
     @Column(name = JpaConst.REP_COL_UPDATED_AT, nullable = false)
     private LocalDateTime updatedAt;
+
 
 }
