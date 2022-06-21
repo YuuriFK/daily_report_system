@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 
 import actions.views.EmployeeView;
+import actions.views.ReactionView;
 import actions.views.ReportView;
 import constants.AttributeConst;
 import constants.ForwardConst;
@@ -119,10 +120,39 @@ public class ReportAction extends ActionBase{
         }
     }
 
-    //リアクション
+    //***リアクション（追加機能・テスト）
     public void good() throws ServletException, IOException {
-        System.out.println("リアクション成功");
-    }
+            //セッションからログイン中の従業員情報を取得
+            EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
+
+            //パラメータの値をもとにリアクション情報のインスタンスを作成する
+            ReactionView rtv = new ReactionView(
+                    null,
+                    ev,
+                    null,
+                    null);
+
+            //日報情報登録
+            List<String> errors = service.create(rtv);
+
+            if (errors.size() > 0) {
+                //登録中にエラーがあった場合
+                putRequestScope(AttributeConst.REP_REACTION, rtv);//入力された日報情報
+                putRequestScope(AttributeConst.ERR, errors);//エラーのリスト
+
+                //新規登録画面を再表示
+                forward(ForwardConst.FW_REACTION_NEW);
+
+            } else {
+                //登録中にエラーがなかった場合
+
+                //セッションに登録完了のフラッシュメッセージを設定
+                putSessionScope(AttributeConst.FLUSH, MessageConst.R_REGISTERED.getMessage());
+
+                //一覧画面にリダイレクト
+                redirect(ForwardConst.ACT_REP, ForwardConst.CMD_SHOW);
+            }
+        }
 
     //edit
     public void edit() throws ServletException, IOException {

@@ -38,6 +38,8 @@ public enum ForwardConst {
     FW_REP_SHOW("reports/show"),
     FW_REP_NEW("reports/new"),
     FW_REP_EDIT("reports/edit");
+    //***以下、機能追加のための追加
+    FW_REACTION_NEW("reactions/new");
 
     private final String text;
 
