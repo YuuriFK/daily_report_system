@@ -13,6 +13,7 @@ import constants.AttributeConst;
 import constants.ForwardConst;
 import constants.JpaConst;
 import constants.MessageConst;
+import services.ReactionService;
 import services.ReportService;
 
 public class ReportAction extends ActionBase{
@@ -122,36 +123,28 @@ public class ReportAction extends ActionBase{
 
     //***リアクション（追加機能・テスト）
     public void good() throws ServletException, IOException {
-            //セッションからログイン中の従業員情報を取得
+            //セッションからログイン中の従業員情報、レポートIDを取得
             EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
+            ReportView rv = service.findOne(toNumber(getRequestParam(AttributeConst.REP_ID)));
+            System.out.println("id内容確認");
+            System.out.println(getRequestParam(AttributeConst.REP_ID));
 
             //パラメータの値をもとにリアクション情報のインスタンスを作成する
             ReactionView rtv = new ReactionView(
                     null,
                     ev,
-                    null,
-                    null);
-
-            //日報情報登録
-            List<String> errors = service.create(rtv);
-
-            if (errors.size() > 0) {
-                //登録中にエラーがあった場合
-                putRequestScope(AttributeConst.REP_REACTION, rtv);//入力された日報情報
-                putRequestScope(AttributeConst.ERR, errors);//エラーのリスト
-
-                //新規登録画面を再表示
-                forward(ForwardConst.FW_REACTION_NEW);
-
-            } else {
-                //登録中にエラーがなかった場合
+                    rv,
+                    "いいね");
+            //リアクション情報登録
+            ReactionService service2 = new ReactionService();
+            service2.create(rtv);
 
                 //セッションに登録完了のフラッシュメッセージを設定
                 putSessionScope(AttributeConst.FLUSH, MessageConst.R_REGISTERED.getMessage());
 
                 //一覧画面にリダイレクト
-                redirect(ForwardConst.ACT_REP, ForwardConst.CMD_SHOW);
-            }
+                putRequestScope(AttributeConst.REPORT, rv);
+                forward(ForwardConst.FW_REP_SHOW);
         }
 
     //edit

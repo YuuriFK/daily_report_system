@@ -31,6 +31,7 @@ public class ReportConverter {
                 r.getCreatedAt(),
                 r.getUpdatedAt());
     }
+
     public static List<ReportView> toViewList(List<Report> list) {
         List<ReportView> evs = new ArrayList<>();
         for (Report r : list) {
@@ -49,5 +50,7 @@ public class ReportConverter {
         r.setUpdatedAt(rv.getUpdatedAt());
 
     }
+
+
 
 }
